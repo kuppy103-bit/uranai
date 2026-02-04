@@ -11,33 +11,34 @@
     flex-direction: column;
     align-items: center;
     padding: 30px;
+    text-align: center;
   }
-  /* タイトルのスタイル */
   h1 {
     color: #ff007d;
     font-size: 24px;
-    margin-bottom: 20px;
+    margin-bottom: 30px;
   }
+  /* メッセージと結果を表示するエリア */
   #fortune {
-    border: 2px dashed #ff99cc;
-    border-radius: 15px;
-    padding: 20px;
     width: 100%;
     max-width: 600px;
-    min-height: 100px; /* 中身が空でも高さを維持 */
-    background: #fff;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-    line-height: 1.6;
-    text-align: center; /* 初期は中央寄せ */
-    margin-bottom: 20px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    margin-bottom: 30px;
+    line-height: 1.8;
+    color: #333;
+    font-size: 18px;
+    /* 枠と背景を削除 */
+    border: none;
+    background: none;
+    box-shadow: none;
   }
-  /* 結果表示時は左寄せにするためのクラス */
+  /* 結果が表示された後の詳細テキスト（左寄せにしたい場合） */
   #fortune.revealed {
     text-align: left;
-    display: block;
+    background: #fff; /* 結果の読みやすさのため、結果時のみ白背景 */
+    padding: 20px;
+    border-radius: 15px;
+    border: 2px dashed #ff99cc;
+    font-size: 16px;
   }
   #drawBtn {
     padding: 12px 24px;
@@ -48,9 +49,13 @@
     font-weight: bold;
     cursor: pointer;
     transition: 0.2s;
+    font-size: 16px;
   }
   #drawBtn:hover {
     background: #ff66aa;
+  }
+  .hidden {
+    display: none;
   }
   span {
     color: #ff007d;
@@ -61,7 +66,7 @@
 
 <h1>易経ミニ占い</h1>
 
-<div id="fortune">今日のあなたへのメッセージ</div>
+<div id="fortune">🌸今日のあなたへのメッセージ🌸</div>
 
 <button id="drawBtn">受け取る</button>
 
@@ -389,23 +394,20 @@ const fortunes = [
 または、チャットからお問い合わせください</span></p>`
 ];
 
-// ※ 占い結果のデータが多いので、ここでは配列の最後までの処理を前提としています。
-
 function drawFortune() {
   const randomIndex = Math.floor(Math.random() * fortunes.length);
   const fortuneDisplay = document.getElementById("fortune");
+  const btn = document.getElementById("drawBtn");
   
   // 結果を代入
   fortuneDisplay.innerHTML = fortunes[randomIndex];
-  // スタイルを結果表示用に変更（左寄せなど）
+  // 結果表示の時だけ、読みやすいように枠と白背景をつける設定
   fortuneDisplay.classList.add("revealed");
-  // ボタンの文字を変える（「もう一度引く」などにする場合）
-  document.getElementById("drawBtn").innerText = "もう一度受け取る";
+  
+  // ボタンを消す
+  btn.classList.add("hidden");
 }
 
-// 【修正ポイント】ページ読み込み時の drawFortune(); を削除しました
-
-// ボタンクリックで占いを実行
 document.getElementById("drawBtn").addEventListener("click", drawFortune);
 </script>
 
