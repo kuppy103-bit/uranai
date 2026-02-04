@@ -15,30 +15,22 @@
     text-align: center;
     margin: 0;
   }
+  /* タイトルに🌸を追加し、サイズを調整 */
   h1 {
     color: #ff007d;
-    font-size: 24px;
-    margin: 30px 0;
+    font-size: 26px;
+    margin: 30px 0 10px;
   }
-  /* メッセージエリア：絶対に1行に収める設定 */
+  /* メッセージを小さくして1行に収める */
   #fortune {
     width: 100%;
     max-width: 600px;
     margin-bottom: 30px;
-    line-height: 1.8;
-    color: #333;
-    /* ここが重要：絶対に改行させず、スマホ幅に合わせる */
-    font-size: 6vw; 
-    white-space: nowrap; 
-    overflow: hidden;
-    text-overflow: ellipsis;
+    color: #666;
+    font-size: 16px;
+    white-space: nowrap; /* 絶対に改行させない */
   }
-  /* パソコンなどの大きな画面用のサイズ制限 */
-  @media (min-width: 480px) {
-    #fortune { font-size: 22px; }
-  }
-
-  /* 結果表示後は左寄せにして、改行も許可する */
+  /* 結果表示後の枠と文字サイズ */
   #fortune.revealed {
     text-align: left;
     background: #fff;
@@ -46,10 +38,11 @@
     border-radius: 15px;
     border: 2px dashed #ff99cc;
     font-size: 18px; 
+    color: #333;
+    white-space: normal; /* 結果は改行を許可 */
     box-sizing: border-box;
-    white-space: normal; /* 結果表示後は改行を許可 */
-    overflow: visible;
   }
+  /* ボタンのサイズと設定 */
   #drawBtn {
     padding: 15px 30px;
     border: none;
@@ -73,11 +66,9 @@
 </head>
 <body>
 
-<h1>易経ミニ占い</h1>
-
-<div id="fortune">🌸今日のあなたへのメッセージ🌸</div>
-
-<button id="drawBtn">受け取る</button>
+  <h1>🌸易経ミニ占い🌸</h1>
+  <div id="fortune">今日のあなたへのメッセージ</div>
+  <button id="drawBtn">受け取る</button>
 
 <script>
 // JavaScriptの内容は以前と同じため中略しますが、
