@@ -1,9 +1,54 @@
-<div id="fortune">占い結果はこちら</div>
-<button id="drawBtn">占う</button>
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>易経ミニ占い</title>
+<style>
+  body {
+    background: #fff0f5;
+    font-family: 'Arial', 'ヒラギノ角ゴ', sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 30px;
+  }
+  #fortune {
+    border: 2px dashed #ff99cc;
+    border-radius: 15px;
+    padding: 20px;
+    max-width: 600px;
+    background: #fff;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    line-height: 1.6;
+    text-align: left;
+    margin-bottom: 20px;
+  }
+  #drawBtn {
+    padding: 12px 24px;
+    border: none;
+    border-radius: 10px;
+    background: #ff99cc;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.2s;
+  }
+  #drawBtn:hover {
+    background: #ff66aa;
+  }
+  span {
+    color: #ff007d;
+  }
+</style>
+</head>
+<body>
+
+<div id="fortune">今日のあなたへのメッセージ</div>
+<button id="drawBtn">受け取る</button>
 
 <script>
 const fortunes = [
-  "<p><strong>乾為天（けんいてん）</strong><br>
+      "<p><strong>乾為天（けんいてん）</strong><br>
 運気は絶好調！やりたいことにどんどん挑戦してみましょう。<br>ただし、うまくいっている時こそ周りへの気配りを忘れずに！
 <br><br>
 <span style="color:#ff007d;">オンラインセッションやメール診断はリッチメニューから<br>
@@ -330,9 +375,12 @@ function drawFortune() {
   document.getElementById("fortune").innerHTML = fortunes[randomIndex];
 }
 
-// 最初の読み込み時にも一回表示したい場合
+// ページ読み込み時に1回表示
 drawFortune();
 
-// ボタンクリックで占う
+// ボタンクリックで占い
 document.getElementById("drawBtn").addEventListener("click", drawFortune);
 </script>
+
+</body>
+</html>
