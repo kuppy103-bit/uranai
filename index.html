@@ -1,35 +1,9 @@
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>易経占いミニアプリ</title>
-  <style>
-    body { 
-      font-family: Arial, sans-serif; 
-      text-align: center; 
-      padding: 40px;
-      background: #fff8f0;
-    }
-    #fortune {
-      font-size: 1.5em;
-      margin-top: 50px;
-      padding: 20px;
-      border: 2px solid #f0c040;
-      border-radius: 10px;
-      background: #fffbe6;
-      display: inline-block;
-    }
-    h1 { color: #f08c00; }
-  </style>
-</head>
-<body>
-  <h1>今日の易経占い</h1>
-  <div id="fortune">占い結果はこちら</div>
+<div id="fortune">占い結果はこちら</div>
+<button id="drawBtn">占う</button>
 
-  <script>
-    const fortunes = [
-      "<p><strong>乾為天（けんいてん）</strong><br>
+<script>
+const fortunes = [
+  "<p><strong>乾為天（けんいてん）</strong><br>
 運気は絶好調！やりたいことにどんどん挑戦してみましょう。<br>ただし、うまくいっている時こそ周りへの気配りを忘れずに！
 <br><br>
 <span style="color:#ff007d;">オンラインセッションやメール診断はリッチメニューから<br>
@@ -349,11 +323,16 @@
 <br><br>
 <span style="color:#ff007d;">オンラインセッションやメール診断はリッチメニューから<br>
 または、チャットからお問い合わせください</span></p>"
-    ];
+];
 
-    const randomIndex = Math.floor(Math.random() * fortunes.length);
-    document.getElementById("fortune").innerHTML = fortunes[randomIndex];
-  </script>
-</body>
-</html>
+function drawFortune() {
+  const randomIndex = Math.floor(Math.random() * fortunes.length);
+  document.getElementById("fortune").innerHTML = fortunes[randomIndex];
+}
 
+// 最初の読み込み時にも一回表示したい場合
+drawFortune();
+
+// ボタンクリックで占う
+document.getElementById("drawBtn").addEventListener("click", drawFortune);
+</script>
