@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>今日の占い</title>
+<style>
+body { font-family: sans-serif; text-align:center; padding:40px; background:#fff5f8; }
+button { font-size:20px; padding:15px 30px; border-radius:10px; border:none; background:#ff6fa5; color:white; }
+#result { margin-top:30px; font-size:22px; }
+</style>
+</head>
+<body>
+
+<h1>🔮 今日の占い 🔮</h1>
+<p>ボタンを押して運勢を見る</p>
+<button onclick="uranai()">占う</button>
+
+<div id="result"></div>
+
+<script>
+function uranai() {
+  const results = [
+    "🌟大吉！今日は思い切って行動すると最高の流れに乗れます",
+    "😊中吉！人との会話がラッキーを運んできます",
+    "🌸小吉！無理せず自分を甘やかすと良い日です",
+    "💡吉！気になっていたことを始めるチャンス",
+    "🍀末吉！焦らずゆっくり進めばOK"
+  ];
+  const r = Math.floor(Math.random() * results.length);
+  document.getElementById("result").innerText = results[r];
+}
+</script>
+
+</body>
+</html>
