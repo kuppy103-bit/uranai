@@ -12,16 +12,32 @@
     align-items: center;
     padding: 30px;
   }
+  /* タイトルのスタイル */
+  h1 {
+    color: #ff007d;
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
   #fortune {
     border: 2px dashed #ff99cc;
     border-radius: 15px;
     padding: 20px;
+    width: 100%;
     max-width: 600px;
+    min-height: 100px; /* 中身が空でも高さを維持 */
     background: #fff;
     box-shadow: 0 4px 8px rgba(0,0,0,0.1);
     line-height: 1.6;
-    text-align: left;
+    text-align: center; /* 初期は中央寄せ */
     margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  /* 結果表示時は左寄せにするためのクラス */
+  #fortune.revealed {
+    text-align: left;
+    display: block;
   }
   #drawBtn {
     padding: 12px 24px;
@@ -43,7 +59,10 @@
 </head>
 <body>
 
+<h1>易経ミニ占い</h1>
+
 <div id="fortune">今日のあなたへのメッセージ</div>
+
 <button id="drawBtn">受け取る</button>
 
 <script>
@@ -370,15 +389,23 @@ const fortunes = [
 または、チャットからお問い合わせください</span></p>`
 ];
 
+// ※ 占い結果のデータが多いので、ここでは配列の最後までの処理を前提としています。
+
 function drawFortune() {
   const randomIndex = Math.floor(Math.random() * fortunes.length);
-  document.getElementById("fortune").innerHTML = fortunes[randomIndex];
+  const fortuneDisplay = document.getElementById("fortune");
+  
+  // 結果を代入
+  fortuneDisplay.innerHTML = fortunes[randomIndex];
+  // スタイルを結果表示用に変更（左寄せなど）
+  fortuneDisplay.classList.add("revealed");
+  // ボタンの文字を変える（「もう一度引く」などにする場合）
+  document.getElementById("drawBtn").innerText = "もう一度受け取る";
 }
 
-// ページ読み込み時に1回表示
-drawFortune();
+// 【修正ポイント】ページ読み込み時の drawFortune(); を削除しました
 
-// ボタンクリックで占い
+// ボタンクリックで占いを実行
 document.getElementById("drawBtn").addEventListener("click", drawFortune);
 </script>
 
